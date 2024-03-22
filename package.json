@@ -5,9 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node backend/index.js",
-    "dev": "node backend/index.js",
-    "build": "[my-framework] build --output public"
+    "start": "node backend/index.js"
   },
   "keywords": [],
   "author": "",
