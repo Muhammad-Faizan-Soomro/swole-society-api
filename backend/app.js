@@ -6,7 +6,7 @@ import path from "path";
 const app = express();
 
 app.use(cors({
-    origin: ["https://www.google.com"],
+    origin: process.env.CORS_ORIGIN,
     credentials: true,
   }));
 
