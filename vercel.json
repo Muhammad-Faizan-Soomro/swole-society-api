@@ -5,6 +5,6 @@
       { "src": "backend/app.js", "use": "@vercel/node" }
    ],
    "rewrites": [
-      { "src": "/(.*)", "dest": "/backend" }
+      { "src": "/(.*)", "destination": "/backend" }
    ]
 }
