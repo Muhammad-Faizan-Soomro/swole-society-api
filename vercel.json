@@ -1,10 +1,1 @@
-{
-   "version": 2,
-   "name": "ecommerce",
-   "builds": [
-      { "src": "backend/app.js", "use": "@vercel/node" }
-   ],
-   "rewrites": [
-      { "src": "/(.*)", "destination": "/backend" }
-   ]
-}
+{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/backend" }] }
