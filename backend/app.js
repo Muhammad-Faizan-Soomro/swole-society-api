@@ -17,11 +17,6 @@ app.use("/public/temp", express.static(path.join(__dirname + "/public/temp")));
 
 //app.use(express.static(path.join(__dirname + "/public/temp"))); // for static files
 
-app.get("/", (req, res) => {
-  app.use(express.static(path.resolve(__dirname, "backend", "dist")));
-  res.sendFile(path.resolve(__dirname, "backend", "dist", "index.html"));
-});
-
 app.use(cookieParser()); // for cookies
 
 import userRouter from "./routes/user.routes.js";
