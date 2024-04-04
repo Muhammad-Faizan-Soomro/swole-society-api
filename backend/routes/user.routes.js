@@ -10,6 +10,7 @@ import {
   getSingleUser,
   deleteSingleUser,
   updateSingleUser,
+  getCookie,
 } from "../controllers/user.controllers.js";
 import { authorizeAdmin, verifyJWT } from "../middlewares/auth.middlewares.js";
 
@@ -23,6 +24,8 @@ router
 router.route("/login").post(loginUser);
 
 router.route("/logout").post(verifyJWT, logoutUser);
+
+router.route("/cookie").get(getCookie);
 
 router
   .route("/profile")

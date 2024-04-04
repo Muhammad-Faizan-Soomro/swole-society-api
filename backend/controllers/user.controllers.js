@@ -214,6 +214,16 @@ const updateSingleUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "user updated successfully"));
 });
 
+const getCookie = asyncHandler(async (req, res) => {
+  const cookie = req.cookies;
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, cookie, "cookie fetched successfully successfully")
+    );
+});
+
 export {
   registerUser,
   loginUser,
@@ -224,4 +234,5 @@ export {
   getSingleUser,
   deleteSingleUser,
   updateSingleUser,
+  getCookie
 };
