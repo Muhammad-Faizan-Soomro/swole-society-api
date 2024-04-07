@@ -31,14 +31,14 @@ const addProduct = asyncHandler(async (req, res) => {
     throw new ApiError(401, "all fields are required");
   }
 
-  const image = await uploadOnCloundinary(imageLocalPath);
+  // const image = await uploadOnCloundinary(imageLocalPath);
 
-  if (!image) {
-    throw new ApiError(
-      500,
-      "can not upload file on cloudinary due to some error"
-    );
-  }
+  // if (!image) {
+  //   throw new ApiError(
+  //     500,
+  //     "can not upload file on cloudinary due to some error"
+  //   );
+  // }
 
   const product = await Product.create({
     name,
@@ -47,7 +47,7 @@ const addProduct = asyncHandler(async (req, res) => {
     category,
     quantity,
     countInStock,
-    image: image.url,
+    image: imageLocalPath,
   });
 
   const createdProduct = await Product.findById(product._id);
