@@ -13,14 +13,14 @@ const uploadOnCloundinary = async (localFilePath) => {
     const response = await cloudinary.uploader.upload(localFilePath, {
       resource_type: "auto",
     });
-    fs.unlink(localFilePath, (data) => {
-      console.log(data);
-    });
+    // fs.unlink(localFilePath, (data) => {
+    //   console.log(data);
+    // });
     return response;
   } catch (error) {
-    fs.unlink(localFilePath, (data) => {
-      console.log(data);
-    });
+    // fs.unlink(localFilePath, (data) => {
+    //   console.log(data);
+    // });
     return null;
   }
 };
