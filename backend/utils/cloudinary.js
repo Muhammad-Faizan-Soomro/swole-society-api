@@ -5,6 +5,7 @@ cloudinary.config({
   cloud_name: "dj1mhaagb",
   api_key: "187144662957924",
   api_secret: "TKPzIq0ZoV63TlvlBGYHDyt-maM",
+  secure: true,
 });
 
 const uploadOnCloundinary = async (localFilePath) => {
