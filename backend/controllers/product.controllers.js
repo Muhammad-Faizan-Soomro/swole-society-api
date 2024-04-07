@@ -39,7 +39,7 @@ const addProduct = asyncHandler(async (req, res) => {
   if (!image) {
     throw new ApiError(
       500,
-      "can not upload file on cloudinary due to some error"
+      "can not upload file cloudinary due to some error"
     );
   }
 
