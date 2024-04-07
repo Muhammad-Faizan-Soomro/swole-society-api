@@ -3,7 +3,6 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Product } from "../models/product.models.js";
 import { uploadOnCloundinary } from "../utils/cloudinary.js";
-import path from "path";
 
 const addProduct = asyncHandler(async (req, res) => {
   const {
@@ -32,14 +31,12 @@ const addProduct = asyncHandler(async (req, res) => {
     throw new ApiError(401, "all fields are required");
   }
 
-  const __dirname = path.resolve();
-
   const image = await uploadOnCloundinary(imageLocalPath);
 
   if (!image) {
     throw new ApiError(
       500,
-      "can not upload file cloudinary due to some error"
+      "can not upload file on cloudinary due to some error"
     );
   }
 
