@@ -10,26 +10,18 @@ cloudinary.config({
 const uploadOnCloundinary = async (localFilePath) => {
   try {
     // if (!localFilePath) return null;
-    const response = await cloudinary.uploader.upload(
-      localFilePath,
-      function (result, error) {
-        if (result) {
-          res.status(200).json(result)
-          return response;
-        } else {
-          res.status(500).json(error)
-          return null;
-        }
-      }
-    );
-
+    const response = await cloudinary.uploader.upload(localFilePath, {
+      resource_type: "auto",
+    });
     // fs.unlink(localFilePath, (data) => {
     //   console.log(data);
     // });
+    return response;
   } catch (error) {
     // fs.unlink(localFilePath, (data) => {
     //   console.log(data);
     // });
+    return null;
   }
 };
 
