@@ -17,7 +17,7 @@ const addProduct = asyncHandler(async (req, res) => {
   //const imageLocalPath = req.file?.path;
 
   if (!imageLocalPath) {
-    throw new ApiError(400, "image is missing");
+    throw new ApiError(400, "images are missing");
   }
 
   if (
