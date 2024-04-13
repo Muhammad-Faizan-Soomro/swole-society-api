@@ -17,12 +17,12 @@ const uploadOnCloundinary = async (localFilePath) => {
       resource_type: "auto",
     });
     fs.unlink(localFilePath, (data) => {
-      console.log(data);
+      // console.log(data);
     });
     return response;
   } catch (error) {
     fs.unlink(localFilePath, (data) => {
-      console.log(data);
+      // console.log(data);
     });
     return null;
   }
@@ -41,34 +41,39 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage,
+  limits: { fileSize: 1 * 1024 * 1024 }, // 1MB
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg"
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      const err = new Error("Only .png, .jpg and .jpeg format allowed!");
+      err.name = "ExtensionError";
+      return cb(err);
+    }
+  },
+});
 
-router.post("/", upload.single("image"), async (req, res) => {
-  if (!req.file) {
+router.post("/", upload.array("image"), async (req, res) => {
+  if (!req.files) {
     res.status(400).send({ message: "No image file provided" });
   } else {
-    const image = await uploadOnCloundinary(`/tmp/${req.file.filename}`);
+    let images = [];
+    for (let i = 0; i < req.files.length; i++) {
+      const image = await uploadOnCloundinary(`/tmp/${req.files[i].filename}`);
+      images.push(image.url);
+    }
     res.status(200).send({
       message: "Image uploaded successfully",
-      image: image.url,
+      image: images,
     });
   }
 });
-
-// router.post("/", (req, res) => {
-//   uploadSingleImage(req, res, (err) => {
-//     if (err) {
-//       res.status(400).send({ message: err.message });
-//     } else if (req.file) {
-//       console.log(req.file)
-//       res.status(200).send({
-//         message: "Image uploaded successfully",
-//         image: `/tmp/${req.file.filename}`,
-//       });
-//     } else {
-//       res.status(400).send({ message: "No image file provided" });
-//     }
-//   });
-// });
 
 export default router;
