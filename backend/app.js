@@ -6,7 +6,7 @@ import path from "path";
 const app = express();
 
 app.use(cors({
-    origin: ["https://swole-society-demo.vercel.app"],
+    origin: ["https://www.swole-society.com"],
     credentials: true,
   }));
 
