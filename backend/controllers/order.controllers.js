@@ -11,20 +11,13 @@ function calcPrices(orderItems) {
     0
   );
 
-  const shippingPrice = itemsPrice > 100 ? 0 : 10;
-  const taxRate = 0.15;
-  const taxPrice = (itemsPrice * taxRate).toFixed(2);
+  const shippingPrice = 250;
 
-  const totalPrice = (
-    itemsPrice +
-    shippingPrice +
-    parseFloat(taxPrice)
-  ).toFixed(2);
+  const totalPrice = (itemsPrice + shippingPrice).toFixed(2);
 
   return {
     itemsPrice: itemsPrice.toFixed(2),
     shippingPrice: shippingPrice.toFixed(2),
-    taxPrice,
     totalPrice,
   };
 }
@@ -69,7 +62,7 @@ const createOrder = asyncHandler(async (req, res) => {
     dbOrderItems.map((x) => {
       let tempData = {
         name: x.data.name,
-        image: x.data.image,
+        image: x.data.image[0].url,
         price: x.price,
         qty: x.qty,
         product: x.product,
@@ -83,7 +76,6 @@ const createOrder = asyncHandler(async (req, res) => {
       shippingAddress,
       paymentMethod,
       itemsPrice,
-      taxPrice,
       shippingPrice,
       totalPrice,
     });
