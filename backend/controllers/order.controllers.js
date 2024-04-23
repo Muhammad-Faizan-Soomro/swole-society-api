@@ -66,6 +66,7 @@ const createOrder = asyncHandler(async (req, res) => {
         price: x.price,
         qty: x.qty,
         product: x.product,
+        colors: x.colors,
       };
       finalOrder.push(tempData);
     });

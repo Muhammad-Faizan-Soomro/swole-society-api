@@ -14,6 +14,10 @@ const orderSchema = new Schema(
           required: true,
           ref: "Product",
         },
+        colors: {
+          type: String,
+          required: true,
+        },
       },
     ],
 
